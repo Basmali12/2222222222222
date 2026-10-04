@@ -1,0 +1,1993 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #070d1a;
+    --bg-card: #121c2e;
+    --primary-red: #e30613;
+    --primary-red-hover: #c40510;
+    --text-white: #ffffff;
+    --text-gray: #8c96aa;
+    --nav-bg: #0a1120;
+    --font-main: 'Cairo', sans-serif;
+  }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #030712;
+    color: #ffffff;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070d1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e30613;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-screen {
+  animation: fadeIn 0.4s ease;
+}
+
+/* Checkbox checkmark styling */
+.remember-me input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--text-gray);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.remember-me input[type="checkbox"]:checked {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+.remember-me input[type="checkbox"]:checked::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  color: white;
+  font-size: 10px;
+  top: 1px;
+  right: 2px;
+}
+
+/* --- الكليشة 3: CSS الصفحة الرئيسية --- */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+}
+
+.header-logo-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header-logo-side h3 {
+  font-size: 14px;
+  margin-bottom: -3px;
+  color: var(--text-white);
+  font-weight: 800;
+}
+
+.header-logo-side span {
+  font-size: 10px;
+  color: var(--text-gray);
+  font-weight: 600;
+}
+
+.menu-icon {
+  font-size: 20px;
+  color: var(--text-white);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+.home-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  padding-bottom: 90px;
+}
+
+.main-banner {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(rgba(7, 13, 26, 0.2), rgba(7, 13, 26, 0.9)),
+    radial-gradient(ellipse at center, #271420 0%, #0c162a 70%);
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  margin-bottom: 25px;
+  position: relative;
+  border: 1px solid rgba(227, 6, 19, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.banner-text h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-white);
+  margin-bottom: 5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.banner-text p {
+  font-size: 14px;
+  color: var(--text-gray);
+  font-weight: 600;
+}
+
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.link-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card);
+  padding: 15px 5px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.link-item:hover {
+  background-color: #1a2744;
+  border-color: rgba(227, 6, 19, 0.3);
+  transform: translateY(-2px);
+}
+
+.link-item:active {
+  transform: scale(0.96);
+}
+
+.link-item i {
+  color: var(--text-white);
+  font-size: 22px;
+  margin-bottom: 5px;
+  transition: color 0.2s;
+}
+
+.link-item:hover i {
+  color: var(--primary-red);
+}
+
+.link-item span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: right;
+  color: var(--text-white);
+}
+
+.match-card {
+  background-color: var(--bg-card);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.teams-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 30%;
+  color: var(--text-white);
+}
+
+.team-info img,
+.team-info .team-crest {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.team-info span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.match-details {
+  text-align: center;
+  width: 40%;
+}
+
+.vs {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-red);
+  margin-bottom: 8px;
+}
+
+.match-time {
+  font-size: 12px;
+  color: var(--text-white);
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.match-stadium {
+  font-size: 11px;
+  color: var(--text-gray);
+}
+
+#bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(70px + env(safe-area-inset-bottom, 0px));
+  background-color: var(--nav-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  padding: 0 10px calc(8px + env(safe-area-inset-bottom, 0px));
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-gray);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  width: 20%;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.nav-item i {
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.nav-item:hover {
+  color: var(--text-white);
+}
+
+.nav-item.active {
+  color: var(--primary-red);
+}
+
+.nav-item.active i {
+  transform: scale(1.1);
+}
+
+.btn-primary {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(227, 6, 19, 0.3);
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+/* --- الكليشة 4: صفحة الأخبار والتقارير --- */
+#news-screen {
+  background-color: var(--bg-dark);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.back-icon,
+.menu-icon {
+  font-size: 20px;
+  color: var(--text-white);
+  cursor: pointer;
+  width: 24px;
+  text-align: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.back-icon:hover,
+.menu-icon:hover {
+  opacity: 0.8;
+  transform: scale(1.08);
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+/* التبويبات العلوية قابلة للتمرير الأفقي */
+.tabs-container {
+  display: flex;
+  gap: 10px;
+  padding: 15px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  background-color: transparent;
+  color: var(--text-gray);
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-btn.active {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+}
+
+/* قائمة الأخبار */
+.news-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  padding-bottom: 90px;
+}
+
+.news-card {
+  background-color: var(--bg-card);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.news-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-content {
+  padding: 15px;
+}
+
+.news-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-gray);
+}
+
+.news-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.news-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* البطاقات المصغرة (النصية) */
+.compact-card .news-image {
+  display: none;
+}
+
+.compact-card .news-title {
+  font-size: 13px;
+}
+
+/* --- CSS الخاص بالكليشة 5 (صفحة المباريات) --- */
+#matches-screen {
+  background-color: var(--bg-dark);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.matches-tabs {
+  display: flex;
+  background-color: var(--nav-bg);
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 8px;
+}
+
+.match-tab-btn {
+  flex: 1;
+  background-color: transparent;
+  color: var(--text-gray);
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.match-tab-btn.active {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+}
+
+.matches-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  padding-bottom: 90px;
+}
+
+.league-info {
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--text-white);
+}
+
+.league-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.league-info p {
+  font-size: 12px;
+  color: var(--text-gray);
+  margin-top: 5px;
+}
+
+/* بطاقة المباراة القادمة البيضاء */
+.main-match-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 25px;
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+}
+
+.main-match-card .teams-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.main-match-card .team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 30%;
+  color: #000000;
+}
+
+.main-match-card .team-info img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.main-match-card .team-info span {
+  font-size: 14px;
+  font-weight: 800;
+  color: #000000;
+}
+
+.main-match-card .match-details .vs {
+  font-size: 22px;
+  font-weight: 800;
+  color: #000000;
+  text-align: center;
+}
+
+.match-time-loc {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.match-time-loc .stadium {
+  color: var(--text-gray);
+  font-size: 12px;
+}
+
+/* العداد التنازلي */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.count-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 48px;
+  background: #f8fafc;
+  padding: 8px 6px;
+  border-radius: 10px;
+}
+
+.count-box .number {
+  font-size: 18px;
+  font-weight: 800;
+  color: #070d1a;
+  font-family: monospace;
+}
+
+.count-box .label {
+  font-size: 11px;
+  color: var(--text-gray);
+}
+
+/* أزرار الإجراءات */
+.match-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.outline-btn {
+  background-color: #f0f2f5;
+  color: #000000;
+}
+
+.outline-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.red-btn {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+}
+
+.red-btn:hover {
+  background-color: var(--primary-red-hover);
+}
+
+/* قسم آخر المباريات */
+.recent-matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent-match-item {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.recent-match-item:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.result-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: #ffffff;
+  min-width: 45px;
+  text-align: center;
+  margin-left: 15px;
+}
+
+.result-badge.win {
+  background-color: #10b981;
+}
+
+.result-badge.draw {
+  background-color: #6b7280;
+}
+
+.result-badge.loss {
+  background-color: var(--primary-red);
+}
+
+.recent-teams {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-white);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.recent-score-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.recent-score {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+.recent-date {
+  font-size: 10px;
+  color: var(--text-gray);
+  font-weight: 600;
+}
+
+/* --- الكليشة 6: صفحة اللاعبين --- */
+#players-screen {
+  background-color: var(--bg-dark);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* التبويبات الرئيسية */
+.main-tabs {
+  display: flex;
+  background-color: var(--nav-bg);
+  padding: 5px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.main-tabs::-webkit-scrollbar {
+  display: none;
+}
+.main-tab-btn {
+  flex: 1;
+  min-width: 80px;
+  background-color: transparent;
+  color: var(--text-gray);
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+.main-tab-btn.active {
+  background-color: #1a2744;
+  color: var(--text-white);
+  border-radius: 8px;
+}
+
+/* شريط التصنيفات الفرعية */
+.sub-filters {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-gray);
+}
+.filter-item {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.filter-item.active {
+  color: var(--text-white);
+}
+
+/* شبكة اللاعبين */
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px 15px 90px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.player-card {
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.player-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.player-img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 5px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  margin-top: -20px;
+  z-index: 2;
+  position: relative;
+  gap: 5px;
+}
+
+.player-number {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-white);
+  font-family: monospace;
+}
+
+.player-name-pos {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+}
+
+.player-pos {
+  font-size: 8px;
+  color: var(--text-gray);
+}
+
+/* --- الكليشة 7: صفحة تفاصيل اللاعب --- */
+#player-details-screen {
+  background-color: var(--bg-dark);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.transparent-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent);
+  border: none;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transparent-header .back-icon,
+.transparent-header .menu-icon {
+  font-size: 20px;
+  color: var(--text-white);
+  cursor: pointer;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.transparent-header .header-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.player-details-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 90px;
+}
+
+/* صورة اللاعب والمعلومات */
+.player-profile-header {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background-color: var(--bg-card);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 30px;
+}
+
+.player-large-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.player-large-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.player-large-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, var(--bg-dark), transparent);
+}
+
+.player-name-badge {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--text-white);
+}
+
+.p-number {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-white);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  font-family: monospace;
+}
+
+.p-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 5px;
+}
+
+.p-position {
+  font-size: 14px;
+  color: var(--text-gray);
+  font-weight: 600;
+}
+
+/* التبويبات */
+.details-tabs {
+  display: flex;
+  background-color: var(--nav-bg);
+  padding: 10px 20px;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.details-tab-btn {
+  flex: 1;
+  background-color: transparent;
+  color: var(--text-gray);
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.details-tab-btn.active {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+}
+
+/* قسم الإحصائيات */
+.stats-container {
+  padding: 20px;
+}
+
+.physical-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.stat-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--bg-card);
+  margin: 0 5px;
+  padding: 15px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.stat-box i {
+  color: var(--primary-red);
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-gray);
+  font-weight: 600;
+}
+
+.stat-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-white);
+}
+
+.stat-val small {
+  font-size: 10px;
+  font-weight: normal;
+  color: var(--text-gray);
+}
+
+.season-stats {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-card);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.season-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-num {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-white);
+  font-family: monospace;
+}
+
+.stat-text {
+  font-size: 11px;
+  color: var(--text-gray);
+  font-weight: 600;
+}
+
+.performance-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-card);
+  border-radius: 15px;
+  padding: 15px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.rating-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.rating-score {
+  background-color: #10b981;
+  border-radius: 10px;
+  padding: 8px 15px;
+}
+
+.score-num {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-white);
+  font-family: monospace;
+}
+
+/* ========================================================
+   CSS الخاص بالكليشة 8: صفحة الصور والفيديوهات (معرض الميديا)
+   ======================================================== */
+#media-screen {
+  background-color: var(--bg-dark);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* التبويبات الرئيسية (معكوسة لتناسب اتجاه اليمين لليسار في التصميم) */
+.media-main-tabs {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--nav-bg);
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.media-tab-btn {
+  flex: 1;
+  background-color: transparent;
+  color: var(--text-gray);
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.media-tab-btn.active {
+  background-color: var(--primary-red);
+  color: var(--text-white);
+}
+
+/* الفئات الفرعية */
+.media-sub-filters {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 10px;
+}
+
+.media-sub-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.m-filter-item {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-gray);
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 15px;
+}
+
+.m-filter-item.active {
+  background-color: var(--text-white);
+  color: #000000;
+}
+
+/* شبكة الميديا */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 15px 90px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.media-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-card);
+  cursor: pointer;
+}
+
+.media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.media-card:hover .media-img {
+  transform: scale(1.05);
+}
+
+/* الشارة (أيقونة الفيديو أو الصور) في الزاوية السفلى */
+.media-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-white);
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.media-badge i {
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   CSS الخاص بالكليشة 9: صفحة شراء التذاكر
+   ========================================================================== */
+#tickets-screen { 
+  background-color: var(--bg-dark); 
+  height: 100%; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  position: relative; 
+}
+
+.tickets-content { 
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 20px 15px; 
+  padding-bottom: 150px; /* مساحة للفوتر السفلي */ 
+}
+
+/* معلومات المباراة العلوية */
+.ticket-match-info { 
+  background-color: var(--bg-card); 
+  border-radius: 20px; 
+  padding: 20px; 
+  margin-bottom: 25px; 
+  border: 1px solid rgba(255,255,255,0.05); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.t-teams-row { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 30px; 
+  margin-bottom: 15px; 
+  width: 100%; 
+}
+
+.t-team img { 
+  width: 50px; 
+  height: 50px; 
+  object-fit: contain; 
+}
+
+.t-vs { 
+  font-size: 20px; 
+  font-weight: 800; 
+  color: var(--primary-red); 
+}
+
+.t-date-time { 
+  text-align: center; 
+  color: var(--text-white); 
+  font-size: 13px; 
+  font-weight: 600; 
+  line-height: 1.6; 
+}
+
+.t-stadium { 
+  font-size: 11px; 
+  color: var(--text-gray); 
+  margin-top: 5px; 
+}
+
+/* قائمة درجات التذاكر */
+.tickets-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+.ticket-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: var(--bg-card); 
+  padding: 15px; 
+  border-radius: 12px; 
+  border: 1px solid rgba(255,255,255,0.02); 
+}
+
+.ticket-type-info { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  width: 35%; 
+}
+
+.color-dot { 
+  width: 12px; 
+  height: 12px; 
+  border-radius: 3px; 
+}
+
+.ticket-name { 
+  font-size: 13px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+}
+
+.ticket-price { 
+  font-size: 14px; 
+  font-weight: 800; 
+  color: var(--text-white); 
+  width: 30%; 
+  text-align: center; 
+}
+
+.ticket-price small { 
+  font-size: 10px; 
+  font-weight: 600; 
+  color: var(--text-gray); 
+}
+
+/* أزرار اختيار العدد */
+.qty-selector { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  background-color: #1a2744; 
+  border-radius: 20px; 
+  padding: 4px; 
+  width: 85px; 
+}
+
+.qty-btn { 
+  background-color: var(--bg-card); 
+  color: var(--text-white); 
+  border: none; 
+  width: 24px; 
+  height: 24px; 
+  border-radius: 50%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  font-size: 10px; 
+  cursor: pointer; 
+  transition: opacity 0.2s;
+}
+
+.qty-btn:active {
+  opacity: 0.7;
+}
+
+.qty-num { 
+  font-size: 14px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+}
+
+/* قسم الإجمالي (ثابت في الأسفل) */
+.checkout-footer { 
+  position: absolute; 
+  bottom: 75px; 
+  left: 0; 
+  width: 100%; 
+  background-color: var(--nav-bg); 
+  padding: 15px 20px; 
+  border-top: 1px solid rgba(255,255,255,0.05); 
+  z-index: 90; 
+}
+
+.total-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 15px; 
+}
+
+.total-label { 
+  font-size: 14px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+}
+
+.total-amount { 
+  font-size: 18px; 
+  font-weight: 800; 
+  color: var(--primary-red); 
+}
+
+.total-amount small { 
+  font-size: 11px; 
+  color: var(--text-gray); 
+}
+
+/* ==========================================================================
+   CSS الخاص بالكليشة 10: صفحة المتجر الرسمي
+   ========================================================================== */
+#store-screen { 
+  background-color: var(--bg-dark); 
+  height: 100%; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  position: relative; 
+}
+
+/* تبويبات المتجر */
+.store-tabs { 
+  display: flex; 
+  background-color: var(--nav-bg); 
+  padding: 10px 15px; 
+  border-bottom: 1px solid rgba(255,255,255,0.05); 
+  overflow-x: auto; 
+  scrollbar-width: none; 
+  gap: 10px; 
+}
+
+.store-tabs::-webkit-scrollbar { 
+  display: none; 
+}
+
+.store-tab-btn { 
+  background-color: transparent; 
+  color: var(--text-gray); 
+  border: none; 
+  font-size: 13px; 
+  font-weight: 700; 
+  padding: 8px 16px; 
+  border-radius: 20px; 
+  cursor: pointer; 
+  transition: 0.3s; 
+  white-space: nowrap; 
+}
+
+.store-tab-btn.active { 
+  background-color: var(--primary-red); 
+  color: var(--text-white); 
+}
+
+/* شبكة المنتجات */
+.products-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 15px; 
+  padding: 15px; 
+  padding-bottom: 90px; 
+  overflow-y: auto; 
+  flex: 1; 
+}
+
+.product-card { 
+  background-color: var(--bg-card); 
+  border-radius: 15px; 
+  overflow: hidden; 
+  border: 1px solid rgba(255,255,255,0.02); 
+  display: flex; 
+  flex-direction: column; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.product-img-box { 
+  width: 100%; 
+  aspect-ratio: 1 / 1; 
+  background-color: #1a2744; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 10px; 
+  position: relative;
+}
+
+.product-img-box img { 
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+  transition: transform 0.3s;
+}
+
+.product-card:hover .product-img-box img {
+  transform: scale(1.06);
+}
+
+.product-details { 
+  padding: 12px; 
+  display: flex; 
+  flex-direction: column; 
+  flex: 1; 
+  justify-content: space-between; 
+}
+
+.product-title { 
+  font-size: 12px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+  margin-bottom: 10px; 
+  line-height: 1.4; 
+}
+
+.product-bottom-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.product-price { 
+  font-size: 14px; 
+  font-weight: 800; 
+  color: var(--primary-red); 
+}
+
+.product-price small { 
+  font-size: 9px; 
+  color: var(--text-gray); 
+}
+
+.add-cart-btn { 
+  background-color: #1a2744; 
+  color: var(--text-white); 
+  border: none; 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 8px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  font-size: 12px; 
+  cursor: pointer; 
+  transition: 0.3s; 
+}
+
+.add-cart-btn:hover { 
+  background-color: var(--primary-red); 
+}
+
+/* ==========================================================================
+   CSS الخاص بالكليشة 11: صفحة الأكاديمية والفئات العمرية
+   ========================================================================== */
+#academy-screen { 
+  background-color: var(--bg-dark); 
+  height: 100%; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  position: relative; 
+}
+
+/* التبويبات الرئيسية */
+.academy-tabs { 
+  display: flex; 
+  background-color: var(--nav-bg); 
+  padding: 5px 15px; 
+  border-bottom: 1px solid rgba(255,255,255,0.05); 
+  overflow-x: auto; 
+  scrollbar-width: none; 
+}
+
+.academy-tabs::-webkit-scrollbar { 
+  display: none; 
+}
+
+.academy-tab-btn { 
+  flex: 1; 
+  min-width: 70px; 
+  background-color: transparent; 
+  color: var(--text-gray); 
+  border: none; 
+  font-size: 13px; 
+  font-weight: 700; 
+  padding: 12px 5px; 
+  cursor: pointer; 
+  transition: 0.3s; 
+  white-space: nowrap; 
+}
+
+.academy-tab-btn.active { 
+  background-color: #1a2744; 
+  color: var(--text-white); 
+  border-radius: 8px; 
+}
+
+/* الفئات الفرعية (المواليد) */
+.academy-sub-filters { 
+  display: flex; 
+  gap: 15px; 
+  padding: 15px 20px 10px; 
+  font-size: 12px; 
+  font-weight: 600; 
+  color: var(--text-gray); 
+  overflow-x: auto; 
+  scrollbar-width: none; 
+}
+
+.academy-sub-filters::-webkit-scrollbar { 
+  display: none; 
+}
+
+.a-filter-item { 
+  cursor: pointer; 
+  transition: 0.3s; 
+  padding: 5px 12px; 
+  border-radius: 15px; 
+  white-space: nowrap; 
+  background-color: var(--bg-card); 
+  border: 1px solid rgba(255,255,255,0.02); 
+}
+
+.a-filter-item.active { 
+  background-color: var(--primary-red); 
+  color: var(--text-white); 
+  border-color: var(--primary-red); 
+}
+
+.academy-content { 
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 15px; 
+  padding-bottom: 90px; 
+}
+
+/* البانر */
+.academy-banner { 
+  width: 100%; 
+  height: 160px; 
+  background-color: #121c2e;
+  border-radius: 15px; 
+  overflow: hidden; 
+  position: relative; 
+  margin-bottom: 20px; 
+}
+
+.banner-overlay { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: linear-gradient(to top, rgba(7, 13, 26, 0.95), rgba(7, 13, 26, 0.35)); 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  padding: 20px; 
+  text-align: center; 
+}
+
+.banner-title { 
+  font-size: 22px; 
+  font-weight: 800; 
+  color: var(--text-white); 
+  margin-bottom: 5px; 
+}
+
+.banner-subtitle { 
+  font-size: 13px; 
+  color: var(--primary-red); 
+  font-weight: 700; 
+}
+
+/* الأيقونات السريعة */
+.academy-links-grid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 10px; 
+  margin-bottom: 25px; 
+}
+
+.a-link-card { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 8px; 
+  background-color: var(--bg-card); 
+  padding: 15px 5px; 
+  border-radius: 12px; 
+  border: 1px solid rgba(255,255,255,0.02); 
+  cursor: pointer; 
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.a-link-card:hover {
+  transform: translateY(-2px);
+  background-color: #1a2744;
+}
+
+.a-link-card i { 
+  font-size: 20px; 
+  color: var(--text-white); 
+}
+
+.a-link-card span { 
+  font-size: 10px; 
+  font-weight: 600; 
+  color: var(--text-gray); 
+  text-align: center; 
+}
+
+/* قائمة الأخبار */
+.academy-news-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+}
+
+.a-news-card { 
+  display: flex; 
+  background-color: var(--bg-card); 
+  border-radius: 12px; 
+  overflow: hidden; 
+  border: 1px solid rgba(255,255,255,0.02); 
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.a-news-card:hover {
+  transform: translateY(-2px);
+}
+
+.a-news-img { 
+  width: 90px; 
+  height: 90px; 
+  object-fit: cover; 
+}
+
+.a-news-details { 
+  padding: 12px; 
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+.a-news-title { 
+  font-size: 12px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+  line-height: 1.4; 
+}
+
+.a-news-meta { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-size: 10px; 
+  color: var(--text-gray); 
+}
+
+.a-news-stats { 
+  display: flex; 
+  gap: 10px; 
+}
+
+.a-news-stats span { 
+  display: flex; 
+  align-items: center; 
+  gap: 4px; 
+}
+
+/* ==========================================================================
+   CSS الخاص بالكليشة 12: المزيد من الخدمات (القائمة الجانبية والإعدادات)
+   ========================================================================== */
+#more-screen { 
+  background-color: var(--bg-dark); 
+  height: 100%; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  position: relative; 
+}
+
+.more-content { 
+  flex: 1; 
+  overflow-y: auto; 
+  padding: 20px 15px; 
+  padding-bottom: 90px; 
+}
+
+/* بطاقة الملف الشخصي */
+.user-profile-card { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+  background-color: var(--bg-card); 
+  padding: 15px; 
+  border-radius: 15px; 
+  margin-bottom: 15px; 
+  border: 1px solid rgba(255,255,255,0.02); 
+  cursor: pointer;
+  transition: 0.3s;
+}
+.user-profile-card:hover {
+  border-color: rgba(255,255,255,0.1);
+  background-color: rgba(255,255,255,0.03);
+}
+.user-avatar { 
+  width: 55px; 
+  height: 55px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 2px solid var(--primary-red); 
+}
+.user-info { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 5px; 
+}
+.user-name { 
+  font-size: 15px; 
+  font-weight: 800; 
+  color: var(--text-white); 
+}
+.user-badge { 
+  font-size: 11px; 
+  color: var(--text-gray); 
+  font-weight: 600; 
+}
+
+/* شعار النادي */
+.club-slogan-box { 
+  text-align: center; 
+  padding: 15px; 
+  background: linear-gradient(to left, rgba(7, 13, 26, 0), rgba(227, 6, 19, 0.1), rgba(7, 13, 26, 0)); 
+  margin-bottom: 25px; 
+  border-radius: 10px; 
+}
+.club-slogan-box p { 
+  font-size: 13px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+  margin-bottom: 5px; 
+}
+.slogan-hashtag { 
+  font-size: 12px; 
+  color: var(--primary-red); 
+  font-weight: 800; 
+}
+
+/* قائمة الخدمات */
+.menu-list { 
+  background-color: var(--bg-card); 
+  border-radius: 15px; 
+  overflow: hidden; 
+  margin-bottom: 25px; 
+  border: 1px solid rgba(255,255,255,0.02); 
+}
+.menu-item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 15px; 
+  text-decoration: none; 
+  border-bottom: 1px solid rgba(255,255,255,0.02); 
+  transition: 0.3s; 
+  cursor: pointer;
+  background: transparent;
+  width: 100%;
+}
+.menu-item:last-child { 
+  border-bottom: none; 
+}
+.menu-item:hover { 
+  background-color: rgba(255,255,255,0.02); 
+}
+
+.menu-item-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+}
+.menu-icon-box { 
+  width: 30px; 
+  height: 30px; 
+  background-color: rgba(255,255,255,0.05); 
+  border-radius: 8px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  color: var(--text-white); 
+  font-size: 13px; 
+}
+.menu-item-right span { 
+  font-size: 13px; 
+  font-weight: 700; 
+  color: var(--text-white); 
+}
+.menu-arrow { 
+  font-size: 12px; 
+  color: var(--text-gray); 
+}
+
+/* زر تسجيل الخروج */
+.logout-btn { 
+  width: 100%; 
+  background-color: var(--primary-red); 
+  color: var(--text-white); 
+  border: none; 
+  padding: 15px; 
+  border-radius: 12px; 
+  font-size: 14px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  margin-bottom: 25px; 
+  transition: 0.3s; 
+}
+.logout-btn:active { 
+  opacity: 0.8; 
+  transform: scale(0.98); 
+}
+
+/* روابط التواصل الاجتماعي */
+.social-links-footer { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  gap: 16px; 
+  padding-bottom: 24px;
+}
+.social-links-footer a { 
+  color: var(--text-gray); 
+  font-size: 19px; 
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.25s ease; 
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.social-links-footer a:hover { 
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.social-links-footer a:active {
+  transform: scale(0.92);
+}
+.social-links-footer a.facebook:hover { color: #1877F2; border-color: rgba(24, 119, 242, 0.4); }
+.social-links-footer a.twitter:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.4); }
+.social-links-footer a.instagram:hover { color: #E1306C; border-color: rgba(225, 48, 108, 0.4); }
+.social-links-footer a.tiktok:hover { color: #00f2fe; border-color: rgba(0, 242, 254, 0.4); }
+
+
+
+
+
+

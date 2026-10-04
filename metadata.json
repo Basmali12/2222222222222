@@ -1,0 +1,6 @@
+{
+  "name": "تطبيق نادي الرجاء العراقي",
+  "description": "التطبيق الرسمي لنادي الرجاء العراقي - أخبار، مباريات، تذاكر، أكاديمية، ومتجر النادي",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
