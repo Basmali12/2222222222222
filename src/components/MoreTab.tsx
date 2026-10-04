@@ -137,21 +137,6 @@ export const MoreTab: React.FC<MoreTabProps> = ({
             <i className="fa-solid fa-chevron-left menu-arrow"></i>
           </button>
 
-          {/* 3. الملعب والمرافق */}
-          <button
-            type="button"
-            className="menu-item"
-            onClick={() => handleMenuClick('stadium')}
-          >
-            <div className="menu-item-right">
-              <div className="menu-icon-box">
-                <i className="fa-solid fa-location-dot"></i>
-              </div>
-              <span>الملعب والمرافق</span>
-            </div>
-            <i className="fa-solid fa-chevron-left menu-arrow"></i>
-          </button>
-
           {/* 4. البطولات */}
           <button
             type="button"
@@ -178,21 +163,6 @@ export const MoreTab: React.FC<MoreTabProps> = ({
                 <i className="fa-solid fa-chart-column"></i>
               </div>
               <span>الإحصائيات</span>
-            </div>
-            <i className="fa-solid fa-chevron-left menu-arrow"></i>
-          </button>
-
-          {/* 6. الوثائق والعقود */}
-          <button
-            type="button"
-            className="menu-item"
-            onClick={() => handleMenuClick('documents')}
-          >
-            <div className="menu-item-right">
-              <div className="menu-icon-box">
-                <i className="fa-solid fa-file-contract"></i>
-              </div>
-              <span>الوثائق والعقود</span>
             </div>
             <i className="fa-solid fa-chevron-left menu-arrow"></i>
           </button>
@@ -534,17 +504,17 @@ export const MoreTab: React.FC<MoreTabProps> = ({
               <div className="space-y-2.5 text-xs">
                 <div className="p-3 bg-[#121c2e] rounded-xl border border-white/5 space-y-1">
                   <span className="text-[#8c96aa] block">الخط الساخن لخدمة الجماهير</span>
-                  <div className="font-bold text-sm text-white flex items-center justify-between">
-                    <span>0770-RAJAA (0770-72522)</span>
-                    <i className="fa-solid fa-phone text-emerald-400"></i>
-                  </div>
+                  <a href="tel:07702523612" className="font-bold text-sm text-white flex items-center justify-between">
+                    <span dir="ltr">07702523612</span>
+                    <i className="fa-solid fa-phone text-emerald-400" aria-hidden="true"></i>
+                  </a>
                 </div>
                 <div className="p-3 bg-[#121c2e] rounded-xl border border-white/5 space-y-1">
                   <span className="text-[#8c96aa] block">البريد الإلكتروني الرسمي</span>
-                  <div className="font-bold text-sm text-white flex items-center justify-between">
-                    <span>info@alrajaa-club.iq</span>
-                    <i className="fa-solid fa-envelope text-cyan-400"></i>
-                  </div>
+                  <a href="mailto:alrajja28@gmail.com" className="font-bold text-sm text-white flex items-center justify-between">
+                    <span dir="ltr">alrajja28@gmail.com</span>
+                    <i className="fa-solid fa-envelope text-cyan-400" aria-hidden="true"></i>
+                  </a>
                 </div>
                 <div className="p-3 bg-[#121c2e] rounded-xl border border-white/5 space-y-1">
                   <span className="text-[#8c96aa] block">الموقع الجغرافي للنادي</span>
