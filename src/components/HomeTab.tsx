@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Users, Shirt, CalendarDays, Newspaper, GraduationCap, ShoppingBag, Ticket, Tv, Clapperboard, Menu } from 'lucide-react';
 import { LionLogo } from './LionLogo';
 import { Match, NewsItem } from '../data/clubData';
 
@@ -43,7 +44,7 @@ export const HomeTab: React.FC<HomeTabProps> = ({
   };
 
   return (
-    <div id="home-screen" className="screen active fade-in-screen">
+    <div id="home-screen" className="screen active fade-in-screen w-full h-full min-h-0 flex flex-col">
       {/* الترويسة (Header) */}
       <div className="home-header">
         <div className="header-logo-side">
@@ -57,123 +58,48 @@ export const HomeTab: React.FC<HomeTabProps> = ({
             <span>2026 - 2025</span>
           </div>
         </div>
-        <i
-          className="fa-solid fa-bars menu-icon"
+        <button
+          type="button"
+          className="header-menu-button"
           onClick={onOpenMenu}
-          title="القائمة الجانبية"
-          role="button"
-          tabIndex={0}
-        ></i>
+          aria-label="القائمة الجانبية"
+        ><Menu size={19} /></button>
       </div>
 
       {/* محتوى الصفحة الرئيسية (Content) */}
-      <div className="home-content">
+      <div className="home-content min-h-0">
         {/* البانر الرئيسي (Main Banner) */}
         <div className="main-banner">
-          {/* Subtle lion watermark in the banner */}
-          <div className="absolute top-2 left-3 opacity-15 pointer-events-none">
-            <LionLogo size={130} />
-          </div>
-          
-          <div className="banner-text z-10">
+          <div className="banner-text">
+            <span className="hero-eyebrow">نادي الرجاء العراقي · موسم 2025 / 2026</span>
             <h2>الرجاء العراقي</h2>
             <p>أكثر من مجرد نادي</p>
           </div>
+          <div className="hero-crest">
+            <LionLogo size={100} />
+          </div>
         </div>
 
-        {/* الأيقونات السريعة (Quick Links Grid) */}
+        {/* Club shortcuts */}
+        <div className="section-title">كل ما يخص ناديك</div>
         <div className="quick-links-grid">
-          <div
-            className="link-item"
-            onClick={() => onNavigateTab('team')}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-users"></i>
-            <span>اللاعبين</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={() => onNavigateTab('team')}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-shirt"></i>
-            <span>الفريق</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={() => onNavigateTab('matches')}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-regular fa-calendar-days"></i>
-            <span>المباريات</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={() => (onOpenNews ? onOpenNews() : onNavigateTab('more'))}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-regular fa-newspaper"></i>
-            <span>الأخبار</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={onOpenAcademy}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-graduation-cap"></i>
-            <span>أكاديمية</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={onOpenStore}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-store"></i>
-            <span>المتجر</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={() => onOpenTickets()}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-ticket"></i>
-            <span>التذاكر</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={onOpenLiveStream}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-tv"></i>
-            <span>البث المباشر</span>
-          </div>
-
-          <div
-            className="link-item"
-            onClick={onOpenMedia}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fa-solid fa-photo-film"></i>
-            <span>الميديا</span>
-          </div>
+          {[
+            { label: 'اللاعبون', icon: Users, action: () => onNavigateTab('team') },
+            { label: 'الفريق', icon: Shirt, action: () => onNavigateTab('team') },
+            { label: 'المباريات', icon: CalendarDays, action: () => onNavigateTab('matches') },
+            { label: 'الأخبار', icon: Newspaper, action: () => onOpenNews ? onOpenNews() : onNavigateTab('more') },
+            { label: 'الأكاديمية', icon: GraduationCap, action: onOpenAcademy },
+            { label: 'المتجر', icon: ShoppingBag, action: onOpenStore },
+            { label: 'التذاكر', icon: Ticket, action: () => onOpenTickets() },
+            { label: 'البث المباشر', icon: Tv, action: onOpenLiveStream },
+            { label: 'الميديا', icon: Clapperboard, action: onOpenMedia },
+          ].map(({ label, icon: Icon, action }) => (
+            <button key={label} type="button" className="link-item" onClick={action}>
+              <Icon size={23} strokeWidth={1.6} aria-hidden="true" />
+              <span>{label}</span>
+            </button>
+          ))}
         </div>
-
         {/* قسم المباراة القادمة (Upcoming Match) */}
         <div className="section-title">المباراة القادمة</div>
         <div className="match-card">

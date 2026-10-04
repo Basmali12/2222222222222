@@ -46,29 +46,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onStart, onExploreGu
 
         {/* Club Brand Title */}
         <h1 className="text-3xl font-black text-white mt-5 tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-          الرجاء العراقي
+          نادي الرجاء العراقي
         </h1>
-        <p className="text-xs uppercase tracking-widest text-[#d4af37] font-bold mt-1">
-          AL RAJAA FOOTBALL CLUB
-        </p>
       </div>
 
       {/* Bottom Text and Actions */}
       <div className="w-full z-10 flex flex-col items-center">
-        <div className="mb-6">
-          <p className="text-base font-semibold text-white/90 mb-1">
-            أهلاً بك في
-          </p>
-          <h2 className="text-2xl font-black text-white mb-2 tracking-tight">
-            نادي الرجاء العراقي
-          </h2>
-          <p className="text-sm text-[#8c96aa] font-medium flex items-center justify-center gap-1.5">
-            <span>معاً نصنع التاريخ</span>
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#e30613]"></span>
-            <span>فرسان الرافدين</span>
-          </p>
-        </div>
-
         {/* Primary CTA: "ابدأ الآن" */}
         <button
           onClick={onStart}

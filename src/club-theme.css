@@ -1,0 +1,253 @@
+/* Shared club surfaces, controls and restrained 3D motion. */
+:root {
+  --club-gold: #e6c36b;
+  --club-stroke: rgba(217, 227, 255, .10);
+  --club-ease: cubic-bezier(.22, 1, .36, 1);
+  --text-gray: #a3aec2;
+  --bg-card: #141f33;
+}
+
+.club-app {
+  background: radial-gradient(ellipse at 20% 5%, #25172b, transparent 45%),
+    radial-gradient(ellipse at 85% 85%, #14223c, transparent 50%), #050912;
+}
+#app-container {
+  isolation: isolate;
+  border-inline: 1px solid var(--club-stroke);
+  background: linear-gradient(160deg, #0c1424, #070d1a 70%);
+}
+.screen-stage { animation: club-screen-in .5s var(--club-ease) backwards; }
+.screen-stage > .fade-in-screen { animation: none; }
+@keyframes club-screen-in {
+  from { opacity: 0; transform: perspective(1100px) translateY(14px) rotateX(3deg) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+.club-app :is(button, [role="button"], a) {
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .25s var(--club-ease), box-shadow .25s ease,
+    background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+.club-app :is(button, [role="button"], a):focus-visible {
+  outline: 2px solid var(--club-gold);
+  outline-offset: 3px;
+}
+.club-app button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.club-app button:not(:disabled):active { scale: .97; }
+.club-app :is(.home-header, .screen-header) {
+  min-height: 74px;
+  flex-shrink: 0;
+  padding: 15px 20px;
+  background: linear-gradient(110deg, #141e30, #0a1120);
+  border-bottom: 1px solid var(--club-stroke);
+}
+.club-app .header-title { font-size: 16px; font-weight: 800; letter-spacing: -.3px; }
+.club-app .header-logo-side { gap: 12px; }
+.club-app .header-logo-side h3 { font-size: 14px; margin-bottom: 3px; }
+.club-app .header-logo-side span { letter-spacing: 1px; color: var(--club-gold); }
+.club-app :is(.menu-icon, .back-icon, .header-menu-button) {
+  width: 42px; height: 42px; display: inline-flex;
+  align-items: center; justify-content: center;
+  border: 1px solid var(--club-stroke); border-radius: 14px;
+  background: rgba(255,255,255,.035); font-size: 17px;
+}
+.club-app :is(.home-content, .matches-content, .academy-content, .more-content, .news-list) {
+  padding-inline: 20px;
+  padding-top: 22px;
+  padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+  overscroll-behavior: contain;
+}
+.club-app .section-title {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 15px; font-weight: 800; margin-bottom: 16px;
+}
+.club-app .section-title::before {
+  content: ''; width: 4px; height: 18px; border-radius: 4px;
+  background: linear-gradient(var(--club-gold), #b88a34);
+  box-shadow: 0 0 15px #d4af3720;
+}
+.club-app :is(.match-card, .main-match-card, .news-card, .player-card,
+  .media-card, .product-card, .a-news-card, .a-link-card, .user-profile-card,
+  .ticket-match-info, .stat-box, .recent-match-item) {
+  border: 1px solid var(--club-stroke);
+  border-radius: 22px;
+  background-color: #131d30;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 12px 28px rgba(0,0,0,.2);
+  transition: transform .35s var(--club-ease), box-shadow .35s ease, border-color .35s ease;
+}
+.club-app :is(.match-card, .main-match-card, .user-profile-card, .ticket-match-info) {
+  background: radial-gradient(ellipse at top right, #25304960, transparent 70%), #121c2e;
+}
+.club-app :is(.main-match-card, .main-match-card .team-info, .main-match-card .team-info span, .main-match-card .vs) { color: #fff; }
+.club-app .match-time-loc { color: #c4ccda; }
+.club-app .count-box { background: #0b1324; border: 1px solid var(--club-stroke); border-radius: 13px; }
+.club-app .count-box .number { color: var(--club-gold); }
+.club-app .countdown { gap: 10px; }
+.club-app .players-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 14px 20px 112px; gap: 14px; }
+.club-app .player-img { height: 160px; }
+.club-app .player-info { justify-content: flex-start; padding: 12px; gap: 10px; margin-top: -30px; }
+.club-app .player-name { font-size: 12px; max-width: 100%; white-space: normal; }
+.club-app .player-pos { font-size: 10px; }
+.club-app :is(.media-grid, .products-grid) { padding-inline: 20px; padding-bottom: 112px; gap: 14px; }
+.club-app :is(.tabs-container, .matches-tabs, .main-tabs, .media-main-tabs,
+  .store-tabs, .academy-tabs, .details-tabs, .auth-toggle) {
+  gap: 6px; padding: 6px;
+  margin: 14px 20px 4px;
+  border: 1px solid var(--club-stroke);
+  border-radius: 18px;
+  background: #050b16;
+  box-shadow: inset 0 2px 7px #0003;
+  flex-shrink: 0;
+}
+.club-app .auth-toggle { margin: 0 0 24px; }
+.club-app :is(.tab-btn, .match-tab-btn, .main-tab-btn, .media-tab-btn,
+  .store-tab-btn, .academy-tab-btn, .details-tab-btn, .auth-toggle-btn) {
+  min-height: 42px; border-radius: 12px;
+  padding: 10px 14px; font-size: 12px; font-weight: 700;
+  color: #a3aec2; white-space: nowrap;
+}
+.club-app :is(.tab-btn, .match-tab-btn, .main-tab-btn, .media-tab-btn,
+  .store-tab-btn, .academy-tab-btn, .details-tab-btn, .auth-toggle-btn).active {
+  background: linear-gradient(145deg, #354158, #1d293e);
+  color: #fff;
+  box-shadow: inset 0 1px 0 #ffffff14, 0 4px 9px #0004;
+  border-bottom-color: transparent;
+}
+.club-app :is(.filter-item, .m-filter-item, .a-filter-item) {
+  padding: 8px 12px; border: 1px solid var(--club-stroke);
+  border-radius: 12px; white-space: nowrap;
+}
+.club-app :is(.filter-item, .m-filter-item, .a-filter-item).active {
+  color: var(--club-gold); background: #d4af3710; border-color: #d4af3745;
+}
+.club-app :is(.sub-filters, .media-sub-filters, .academy-sub-filters) {
+  gap: 8px; overflow-x: auto; justify-content: flex-start; scrollbar-width: none;
+}
+.club-app :is(.btn-primary, .red-btn, #btn-start, button[type="submit"]) {
+  min-height: 50px; border-radius: 16px;
+  background: linear-gradient(135deg, #f22432, #cf0716);
+  border: 1px solid #ff66704a;
+  box-shadow: inset 0 1px 0 #ffffff26, 0 5px 0 #830716, 0 12px 24px #e3061329;
+  font-weight: 800;
+}
+.club-app :is(.outline-btn, .action-btn) { min-height: 46px; border-radius: 14px; }
+.club-app .outline-btn { border-color: #d4af3750; color: var(--club-gold); background: #d4af3708; }
+.club-app :is(.qty-btn, .add-cart-btn) {
+  min-width: 36px; min-height: 36px; border-radius: 12px;
+  box-shadow: inset 0 1px 0 #ffffff15;
+}
+.club-app .menu-list {
+  border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--club-stroke); background: #131d30;
+}
+.club-app .menu-item { min-height: 68px; padding: 14px 16px; border-bottom-color: var(--club-stroke); }
+.club-app .menu-icon-box { border-radius: 13px; background: #e6c36b0e; color: var(--club-gold); }
+.club-app :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+  min-height: 50px; border-radius: 15px; font-size: 16px;
+  border: 1px solid #344057; background: #0b1322; color: #fff;
+  box-shadow: inset 0 2px 7px #0002;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  user-select: text;
+}
+.club-app :is(input, textarea, select):focus {
+  outline: none; border-color: var(--club-gold);
+  box-shadow: 0 0 0 3px #d4af371c, inset 0 2px 7px #0002;
+}
+.club-app input::placeholder, .club-app textarea::placeholder { color: #8290a7; font-size: 13px; }
+.club-app .field-label { display: block; font-size: 12px; font-weight: 700; color: #c4ccda; margin-bottom: 8px; }
+.club-app .input-group:has(.field-label) .input-icon { top: calc(50% + 13px); }
+.club-app .input-group:focus-within .input-icon { color: var(--club-gold); }
+.club-app #login-screen { padding-top: 22px; padding-bottom: 28px; }
+.club-app #login-screen form { padding-bottom: 6px; }
+.club-app #login-screen .login-header { margin-bottom: 24px; }
+.club-app #bottom-nav {
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  left: 12px; width: calc(100% - 24px); height: 74px;
+  padding: 7px 5px; gap: 3px;
+  border-radius: 22px; border: 1px solid #4c587647;
+  background: linear-gradient(145deg, #1b2639f5, #0b1322f5);
+  backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 #ffffff0d, 0 12px 36px #0008;
+}
+.club-app .nav-item {
+  height: 58px; min-width: 0; gap: 5px; border-radius: 15px;
+  font-size: 10px; font-weight: 700; color: #a3aec2;
+  justify-content: center; position: relative;
+}
+.club-app .nav-item.active {
+  color: #fff;
+  background: linear-gradient(140deg, #de1828, #a90919);
+  box-shadow: inset 0 1px 0 #ffffff26, 0 4px 12px #e3061338;
+}
+.club-app .nav-item.active svg { animation: club-tab-pop .4s var(--club-ease); }
+@keyframes club-tab-pop {
+  from { transform: perspective(300px) rotateY(-35deg) translateY(5px) scale(.8); }
+  to { transform: perspective(300px) rotateY(0) translateY(0) scale(1); }
+}
+.club-app .checkout-footer {
+  bottom: calc(98px + env(safe-area-inset-bottom, 0px));
+  background: #0b1424f5; backdrop-filter: blur(14px);
+  border-top: 1px solid var(--club-stroke); padding: 14px 20px;
+}
+.club-app .tickets-content { padding-bottom: 240px; }
+.club-app .main-banner {
+  min-height: 196px; height: auto; align-items: center; justify-content: space-between;
+  padding: 24px; gap: 12px; overflow: hidden;
+  background: radial-gradient(ellipse at 20% 45%, #ac742736, transparent 65%),
+    linear-gradient(125deg, #251c2a, #142035 60%, #19263a);
+  border: 1px solid #d4af3730;
+  box-shadow: inset 0 1px 0 #ffffff0c, 0 18px 35px #0004;
+}
+.club-app .main-banner::after {
+  content: ''; position: absolute; width: 140px; height: 260px;
+  background: linear-gradient(90deg, transparent, #ffffff05, transparent);
+  rotate: 25deg; left: -50px; top: -40px; pointer-events: none;
+}
+.club-app .banner-text { position: relative; z-index: 1; }
+.club-app .banner-text h2 { font-size: clamp(22px, 6vw, 28px); line-height: 1.6; margin: 7px 0 2px; }
+.club-app .banner-text p { font-size: 12px; color: #bdc7da; }
+.club-app .hero-eyebrow { color: var(--club-gold); font-size: 10px; font-weight: 800; letter-spacing: .4px; }
+.club-app .hero-crest { flex-shrink: 0; transform: perspective(600px) rotateY(-12deg); }
+.club-app .quick-links-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; }
+.club-app .link-item {
+  min-height: 92px; padding: 14px 6px; gap: 9px; border-radius: 18px;
+  background: linear-gradient(145deg, #1d2a3e, #121c2f);
+  border: 1px solid var(--club-stroke);
+  box-shadow: inset 0 1px 0 #ffffff09, 0 6px 16px #0002;
+}
+.club-app .link-item svg { color: var(--club-gold); filter: drop-shadow(0 3px 6px #d4af3726); }
+.club-app .link-item span { font-size: 11px; }
+.club-app #splash-screen .club-crest { animation: club-crest-float 6s ease-in-out infinite; }
+@keyframes club-crest-float {
+  0%, 100% { transform: perspective(800px) translateY(0) rotateY(-7deg) rotateX(3deg); }
+  50% { transform: perspective(800px) translateY(-9px) rotateY(7deg) rotateX(-3deg); }
+}
+.club-app #splash-screen h1 { font-size: clamp(25px, 7vw, 32px); }
+.club-app .fixed.inset-0 { z-index: 200; }
+.club-app .fixed > :is(.rounded-3xl, .rounded-2xl) {
+  box-shadow: inset 0 1px 0 #ffffff12, 0 24px 80px #0009;
+  max-height: calc(100dvh - 32px); overflow-y: auto;
+  animation: club-screen-in .35s var(--club-ease) backwards;
+}
+@media (hover: hover) and (pointer: fine) {
+  .club-app :is(.link-item, .a-link-card, .product-card, .player-card, .news-card, .media-card):hover {
+    transform: perspective(900px) translateY(-4px) rotateX(3deg) rotateY(-2deg);
+    border-color: #e6c36b55; box-shadow: inset 0 1px 0 #ffffff14, 0 18px 30px #0005;
+  }
+  .club-app :is(.btn-primary, .red-btn, #btn-start):hover {
+    transform: perspective(700px) translateY(-2px) rotateX(4deg);
+    box-shadow: inset 0 1px 0 #ffffff30, 0 7px 0 #830716, 0 17px 28px #e3061338;
+  }
+}
+@media (max-width: 360px) {
+  .club-app :is(.home-content, .matches-content, .academy-content, .more-content, .news-list) { padding-inline: 14px; }
+  .club-app .main-banner { padding: 18px; }
+  .club-app .hero-crest { scale: .85; margin-inline: -7px; }
+  .club-app .nav-item { font-size: 9px; }
+  .club-app .ticket-row { gap: 8px; padding-inline: 12px; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .club-app *, .club-app *::before, .club-app *::after {
+    animation: none !important; transition: none !important; scroll-behavior: auto !important;
+  }
+  .club-app :is(.link-item, .a-link-card, .product-card, .player-card, .news-card, .media-card, .btn-primary, .red-btn, #btn-start):hover { transform: none; }
+}

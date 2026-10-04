@@ -186,7 +186,7 @@ export default function App() {
     currentScreen !== 'splash-screen' && currentScreen !== 'login-screen';
 
   return (
-    <div className="min-h-screen bg-[#070d1a] text-white flex justify-center font-['Cairo',sans-serif] selection:bg-[#e30613] selection:text-white">
+    <div className="club-app min-h-screen bg-[#070d1a] text-white flex justify-center font-['Cairo',sans-serif] selection:bg-[#e30613] selection:text-white">
       {/* Main Container tailored natively for phones and responsive viewports */}
       <main
         id="app-container"
@@ -199,7 +199,7 @@ export default function App() {
         }}
       >
         {/* Screen Switcher */}
-        <div className="flex-1 relative overflow-hidden flex flex-col">
+        <div key={currentScreen} className="screen-stage flex-1 min-h-0 relative overflow-hidden flex flex-col">
           {/* SCREEN 1: Splash Screen (الكليشة 1) */}
           {currentScreen === 'splash-screen' && (
             <SplashScreen

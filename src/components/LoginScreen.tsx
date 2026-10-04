@@ -38,17 +38,12 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     }, 450);
   };
 
-  const handleSocialLogin = (provider: 'google' | 'facebook' | 'apple') => {
+  const handleGoogleLogin = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      const providerNames = {
-        google: 'Google',
-        facebook: 'Facebook',
-        apple: 'Apple ID',
-      };
       onLoginSuccess({
-        name: `مشجع عبر ${providerNames[provider]}`,
+        name: 'مشجع عبر Google',
         phone: '+964 770 888 9900',
         role: 'مشجع رجاوي',
       });
@@ -130,8 +125,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         <form onSubmit={handleSubmit} className="space-y-4">
           {authMode === 'register' && (
             <div className="input-group relative">
+              <label htmlFor="fan-name" className="field-label">الاسم الكامل</label>
               <i className="fa-regular fa-id-card input-icon right absolute right-5 top-1/2 -translate-y-1/2 text-[#8c96aa] text-[15px]"></i>
               <input
+                id="fan-name"
+                autoComplete="name"
                 type="text"
                 required
                 value={name}
@@ -144,8 +142,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
           {/* Identifier Input */}
           <div className="input-group relative">
+            <label htmlFor="fan-identifier" className="field-label">البريد الإلكتروني أو رقم الهاتف</label>
             <i className="fa-regular fa-user input-icon right absolute right-5 top-1/2 -translate-y-1/2 text-[#8c96aa] text-[15px]"></i>
             <input
+              id="fan-identifier"
+              autoComplete="username"
               type="text"
               required
               value={identifier}
@@ -157,8 +158,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
           {/* Password Input */}
           <div className="input-group relative">
+            <label htmlFor="fan-password" className="field-label">كلمة المرور</label>
             <i className="fa-solid fa-lock input-icon right absolute right-5 top-1/2 -translate-y-1/2 text-[#8c96aa] text-[15px]"></i>
             <input
+              id="fan-password"
+              autoComplete={authMode === 'register' ? 'new-password' : 'current-password'}
               type={showPassword ? 'text' : 'password'}
               required
               value={password}
@@ -224,27 +228,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
           <div className="social-buttons flex justify-center gap-4 mb-4">
             <button
               type="button"
-              onClick={() => handleSocialLogin('google')}
+              onClick={handleGoogleLogin}
               className="social-btn google w-[52px] h-[52px] bg-white rounded-[18px] flex items-center justify-center text-[22px] text-[#DB4437] shadow-[0_4px_10px_rgba(0,0,0,0.15)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
               title="تسجيل الدخول بواسطة Google"
             >
               <i className="fa-brands fa-google"></i>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSocialLogin('facebook')}
-              className="social-btn facebook w-[52px] h-[52px] bg-white rounded-[18px] flex items-center justify-center text-[22px] text-[#1877F2] shadow-[0_4px_10px_rgba(0,0,0,0.15)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              title="تسجيل الدخول بواسطة Facebook"
-            >
-              <i className="fa-brands fa-facebook-f"></i>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSocialLogin('apple')}
-              className="social-btn apple w-[52px] h-[52px] bg-white rounded-[18px] flex items-center justify-center text-[22px] text-black shadow-[0_4px_10px_rgba(0,0,0,0.15)] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              title="تسجيل الدخول بواسطة Apple"
-            >
-              <i className="fa-brands fa-apple"></i>
             </button>
           </div>
         </div>
